@@ -1,0 +1,7 @@
+<p>report-view works!</p>
+
+<div *ngFor = 'let obj of patientReports'>
+    <button (click) = 'onSelect(obj.reportName)'>{{ obj.reportName }}</button>
+</div>
+
+

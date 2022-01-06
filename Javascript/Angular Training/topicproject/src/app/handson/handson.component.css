@@ -1,0 +1,16 @@
+h2,p,input{
+    margin-left: 10em;
+}
+
+h1 {
+    color: aqua;
+    margin-left: 10em;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}

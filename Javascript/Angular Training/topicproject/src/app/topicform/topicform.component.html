@@ -1,0 +1,116 @@
+<h1>Create a Topic</h1>
+<!-- <div>
+    <div>Form Data : {{ topicform.value | json}}</div>
+    <div>Form Validation : {{ topicform.valid | json}}</div>
+
+    <form #topicform = "ngForm">
+        <!-- Above #topicform is a template local variable or reference to ngForm and it can be used to access/associate diff. elements of the html with the object. THe reference name can be anything and can be used as above for validation/accessing values etc. .-->
+       <!-- <input type="text" minlength="5" #title
+            ngModel name="title" required
+            placeholder="Enter Title"/>
+            <div>{{ title.className }}</div>
+        <input type="text" placeholder="Enter Description" name="description" ngModel minlength="5"/>
+    </form>
+    <br><br><br>
+</div> -->
+
+<div>
+    <form (ngSubmit) = "submit(topicform.value)" #topicform="ngForm">
+        <div class="form-group">
+          <label for="topicid">Id</label>
+          <input type="text" class="form-control" id="topicid" 
+          placeholder="Enter Id: " name='topicid'
+          required minlength="1"
+          [class.is-invalid] = "topicid.invalid && topicid.touched"
+          #topicid="ngModel"
+          [ngModel]='topic.id'>
+        </div>
+        <div  class="alert alert-danger" *ngIf='topicid.touched && topicid.invaid'>
+            <div *ngIf='topicid.errors && topicid.invalid'>
+                <small *ngIf='topicid.errors.required'>
+                    Topicid is required
+                </small>
+                <small *ngIf='topicid.errors.minlength'>
+                    Topicid should be of 1 characters atlease
+              </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="topictitle">Title</label>
+            <input type="text" class="form-control" id="topictitle" 
+            placeholder="Enter Title: " name="topictitle"
+            required minlength="3"
+            [class.is-invalid] = "topictitle.invalid && topictitle.touched"
+            #topictitle = "ngModel"
+            [ngModel]='topic.title'>
+          </div>
+          <div  class="alert alert-danger" *ngIf='topictitle.touched && topictitle.invalid'>
+            <div *ngIf='topictitle.errors && topictitle.invalid'>
+                <small *ngIf='topictitle.errors.required'>
+                    Title is required
+                </small>
+                <small *ngIf='topictitle.errors.minlength'>
+                  Title should be of 3 characters atlease
+              </small>
+            </div>
+        </div>
+          <!-- <div class="form-group">
+            <label for="topicdesc">Description</label>
+            <input type="text" class="form-control" id="topicdesc" 
+            placeholder="Enter Description: " name="topicdesc" 
+            required minlength="5"
+            [class.is-invalid] = "topicdesc.invalid && topicdesc.touched"
+            #topicdesc = "ngModel"
+            [(ngModel)]='topic.description'/>
+          </div>
+        <div  class="alert alert-danger" *ngIf='topicdesc.touched && topicdesc.invaid'>
+            <div *ngIf='topicdesc.errors && topicdesc.invalid'>
+                <small *ngIf='topicdesc.errors.required'>
+                    Description is required
+                </small>
+                <small *ngIf='topicdesc.errors.minlength'>
+                    Description should be of 5 characters atlease
+              </small>
+            </div>
+        </div> -->
+        <div class="form-group">
+            <label for="topicdesc">Description</label>
+            <input type="text" class="form-control" id="topicdesc" 
+            placeholder="Enter Description: " name="topicdesc" 
+            required minlength="10"
+            [ngModel]='topic.description'
+            #desc='ngModel'>
+          </div>
+          <div  *ngIf='desc.touched'>
+            <div class="alert alert-danger" *ngIf='desc.errors && desc.invalid'>
+                <small  *ngIf='desc.errors.required'>
+                    desc is required
+                </small>
+                <small *ngIf='desc.errors.minlength'>
+                    desc should be of 10 characters atlease
+              </small>
+            </div>
+        </div>
+          <div class="form-group">
+            <label for="topiccategory">Select Category</label>
+            <select class="form-control" id="topiccategory" name='categories'
+            required
+            #category='ngModel'
+            [(ngModel)]='topic.category'>
+              <option *ngFor='let category of categories' [value]='category'>
+                  {{category}}
+              </option>
+            </select>
+          </div>
+          <div class="alert alert-danger" *ngIf='category.touched && category.invalid'>
+            <div *ngIf='category.errors && category.invalid'>
+                <small *ngIf='category.errors.required'>
+                    Category is required
+                </small>
+            </div>
+        </div>
+          <div><input type="submit" [disabled] = "topicform.invalid"/></div>
+      </form>
+</div>
+<br>
+<br>

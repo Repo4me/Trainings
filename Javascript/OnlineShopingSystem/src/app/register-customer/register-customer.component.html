@@ -1,0 +1,65 @@
+<div class="container">
+    <form [formGroup] = 'customerForm' (ngSubmit) = 'register()'>
+        <div class="form-group">
+            <label for="name">Customer Name</label>
+            <input type="text" class="form-control" formControlName = 'name' name = 'name'>
+
+            <div *ngIf = 'f.name.touched'>
+                <div class="alert alert-danger" *ngIf = 'f.name.errors && f.name.invalid'>
+                    <small *ngIf = 'f.name.errors.required'>Customer Name is required</small>
+                    <small *ngIf = 'f.name.errors.minlength'>Minimum length is 5</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" formControlName = 'phone' name = 'phone'>
+            <div *ngIf = 'f.phone.touched'>
+                <div class="alert alert-danger" *ngIf = 'f.phone.errors && f.phone.invalid'>
+                    <small *ngIf = 'f.phone.errors.required'>Phone is required</small>
+                    <small *ngIf = 'f.phone.errors.minlength'>Minimum length is 10</small>
+                    <small *ngIf = 'f.phone.invalid'>Enter Valid phone</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" formControlName = 'city' name = 'city'>
+
+            <div *ngIf = 'f.city.touched'>
+                <div class="alert alert-danger" *ngIf = 'f.city.errors && f.city.invalid'>
+                    <small *ngIf = 'f.city.errors.required'>City is required</small>
+                    <small *ngIf = 'f.city.errors.minlength'>Minimum length is 2</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" class="form-control" formControlName = 'username' name = 'username'>
+
+            <div *ngIf = 'f.username.touched'>
+                <div class="alert alert-danger" *ngIf = 'f.username.errors && f.username.invalid'>
+                    <small *ngIf = 'f.username.errors.required'>User Name is required</small>
+                    <small *ngIf = 'f.username.errors.minlength'>Minimum length is 8</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" formControlName = 'password' name = 'password'>
+
+            <div *ngIf = 'f.password.touched'>
+                <div class="alert alert-danger" *ngIf = 'f.password.errors && f.password.invalid'>
+                    <small *ngIf = 'f.password.errors.required'>Password is required</small>
+                    <small *ngIf = 'f.password.errors.minlength'>Minimum length is 5</small>
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+<h1>Reactive Form</h1>
+<div class="container">
+<div>
+    <input type="text" [formControl]='name'/>
+</div>
+
+<br>
+
+<form [formGroup]='fg'>
+    <div>
+        <input type="text" formControlName='name'
+        [class.is-invalid]='name.touched && name.invalid'/>
+    </div>
+
+    <div *ngIf='name.touched'>
+        <div class='alert alert-danger'
+         *ngIf='name.errors && name.invalid'>
+            <small *ngIf='name.errors.required'>
+                Name is required
+            </small>
+            <small *ngIf='name.errors.minlength'>
+                Name min 5 charaters long
+            </small>
+        </div>
+    </div>
+    <br>
+    <div>
+        <input type="password" 
+        formControlName='password'/>
+    </div>
+    <div *ngIf='password.touched'>
+        <div class='alert alert-danger'
+         *ngIf='password.invalid'>
+            <small *ngIf='password.errors.required'>
+                password is required
+            </small>
+            <small *ngIf='password.errors.pattern'>
+                password only digits
+            </small>
+        </div>
+    </div>
+</form>
+</div>

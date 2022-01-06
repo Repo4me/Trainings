@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="container">
+    <!-- <input type="text" [(ngModel)] = 'service.message'/> -->
+    <!-- above data binding with service message, it reflects everywhere where the service msg is referred -->
+    <!-- <h1>AppComp : {{ service.message }}</h1> -->
+    <!-- 
+        A parent child relatuoin is established only by usiing the selector, which means we can use one component and apply it's selector in multiple html, and all those components becomes the parent.
+        Check <app-topic> selector is used in app.component and header.componnet, and both becomes parent of topic.component
+    
+    -->
+    <!--<app-handson></app-handson>-->
+    
+    <!-- <app-pipes></app-pipes> -->
+
+    <!-- <app-inline-comp></app-inline-comp> -->
+    <!-- <div>
+        <input type="text" [(ngModel)]='title'/>
+    </div>
+    <app-topic [topic] = 'java' [title] = 'title'></app-topic> -->
+    <app-topiclist></app-topiclist>
+    
+    <!-- 
+        This is not working for child to parent event emitter.
+        Event emitting example. Event mitted from child to parent. 
+        <app-topicform (topicCreated)='topicAdded($event)'></app-topicform> 
+    -->
+    <app-topicform (topicCreated)='topicAdded($event)'></app-topicform> 
+    
+
+    <!-- <app-reactive></app-reactive> -->
+</div>
+<app-footer></app-footer>

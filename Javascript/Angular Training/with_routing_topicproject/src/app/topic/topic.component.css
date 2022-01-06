@@ -1,0 +1,11 @@
+.topic{
+    width:60%;
+    margin: 0 auto;
+    color:brown;
+    background-color: bisque;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    opacity: 1;
+    transition: 1s ease all;
+}

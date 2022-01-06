@@ -1,0 +1,33 @@
+<app-header></app-header>
+<nav class="navbar navbar-dark bg-inverse navbar-expand-md  bgblue">
+		<div class='container'>
+			<a class="navbar-brand white" href="#">
+				<span>TopicHub</span>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<span class="white navbar-toggler-icon"></span>
+         </button>
+         <ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+                  <a routerLink = '/create'
+						class="white nav-link">Create Topic</a></li>
+					<li class="nav-item"><a routerLink = '/list'
+						class="white nav-link">Topics</a></li>
+		</ul>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+			  <a routerLink='login' *ngIf='!service.isLoggedIn()'
+					class="white nav-link">Login</a></li>
+				<li class="nav-item"><a routerLink='register' *ngIf='!service.isLoggedIn()'
+					class="white nav-link">Register</a></li>
+					<li class="nav-item"><a routerLink='logout' *ngIf='service.isLoggedIn()'
+						(click) = 'service.logout()'
+						class="white nav-link">Logout</a></li>
+			</ul>
+		</div>
+		</div>
+  </nav>
+  <router-outlet></router-outlet>
+<app-footer></app-footer>

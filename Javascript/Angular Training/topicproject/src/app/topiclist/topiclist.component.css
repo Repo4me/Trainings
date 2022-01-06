@@ -1,0 +1,15 @@
+.list{
+    background-color: chocolate;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.java{
+    border:2px solid black;
+}
+.c{
+    border:2px solid green;
+}
+.python{
+    border:2px solid red;
+}

@@ -1,0 +1,40 @@
+<div>
+    <div class="row">
+        <div class="col-sm-3 col-md-6 col-lg-8" >
+            <div [class] = 'bgcolor'>
+                <form [formGroup] = 'preferenceForm' (ngSubmit) = 'submit()'>
+                    
+                    <input type="text" formControlName = "name"/>
+                    
+                    <input type="text" formControlName = "email"/>
+                    
+                    <div>
+                        <p>Select Favorite Desert</p>
+                        <div *ngFor = "let obj of desertList">
+                            <input type="checkbox" [value] = 'obj' 
+                            (change)="onCheckboxChange($event)" name="deserts">
+                            <label>{{ obj | titlecase}}</label>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Select Favorite Color</p>
+                        <select name="color" formControlName = "color">
+                            <option *ngFor = "let obj of colorList" [value]='obj'>
+                                {{ obj }}
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!-- <div class="vl"></div> -->
+        <div class="col-sm-3 col-md-6 col-lg-4">
+            <p>Name : {{ customer.name }}</p>
+            <p>Email : {{ customer.email }}</p>
+            <p>Deserts : [{{ customer.deserts }}]</p>
+            <p>Favorite Color : {{ customer.favoriteColor }}</p>
+            
+        </div>
+    </div>
+</div>

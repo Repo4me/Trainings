@@ -1,0 +1,12 @@
+<div class='topic' appBorder [category] = 'topic.category'>
+    <!-- <h1>Title : {{title}}</h1>
+    <h2>Topic Details Object</h2> -->
+    <!-- 
+        If we don't put ? below, there will be error in browser console, because topic is not initialized. TO overcome this error we use optional i.e. "?" 
+        Using ?, properties will only be invoked if topic exixsts.
+    -->
+    <p>{{topic?.id}}</p>
+    <p>{{topic?.title  | uppercase}}</p>
+    <p>{{topic?.description}}</p>
+    <p>{{topic?.category  | uppercase}}</p>
+</div>

@@ -1,0 +1,176 @@
+Ways of binding
+{{ }} - string interpolation, using this data is transfered from component to the html. The value of component property is always evaluated as a string.
+	
+	e.g. {{ component property }}
+
+[] - data binding, this is also called as attribute binding i.e html element attribute surrounded by [], and the component value is used as value of the attribute. The component property value from component is evaluated as the required data type of the html attibute like boolean, number etc.
+	It is also used for css class binding
+
+	e.g. <htmlElement [innerText] = 'component property'>
+		<htmlElement [class] = 'component property'>
+
+() - This represents event binding. html event is surrounded by () and the event handler is the value, handler is written in the corresponding component.
+
+	e.g. <htmlElement (click) = 'onClick()'>
+	
+([]) - It is also called banana "()" in a box "[]". This is used for twa-way data binding. It is a combination of component to html binding using [] and event binding using (), the only difference is that the event handler is not required in this case unlike event binding. 
+	
+	e.g. <htmlElement [(ngModel)] = 'component property'>
+
+
+************ Inline components **********
+In inline component the style and html both is present in the component class itself as json object under @Component decorator. Html is written as "template : `<htmlElement> ... ` and css is written as "styles : []"
+
+	e.g. @Component({
+					  selector: 'app-inline-comp',
+					  template:`
+					  <div class='container-fluid text-center footer'>
+						<h2>Inline component with html and css !!!</h2>
+					  </div>
+					  `,
+					  styles:[
+						`
+						.footer{
+						  background-color:yellow;
+						  padding:30px;
+						}
+						`
+					  ]
+					})
+					
+
+************************ Component heirarchy ******************
+In angular component heirarchy is established using the selector of the component.
+The component whose selector is used within other component's .html, i.e. prior becomes child of later html's corresponding component
+	
+	e.g. 
+		Consinder two components A and B
+		A : 
+			A.component.ts with selector App-A
+			A.component.html
+			A.component.css
+			A.component.spec
+			
+		B : 
+			B.component.ts
+			B.component.html - in this selector of A is used <App-A>
+			B.component.css
+			B.component.spec
+			
+		In above case A becomes child of B component
+		
+The data from parent component is passed in child using @Input on child component's property. The property should be available in parent as well as child (child can have only decleration of property). Refer topic.component.ts and app.component.ts in topicproject from LTI training.
+
+Child can send data to parent using EventEmitter object, this EventEmitter reference whoud be decorated with @Output.
+The above reference will be the event name in selector of child in parent's .html. 
+The value to the above event name will be the event handler function in parent component. The data is passed as parameter to this handler with "$event".
+Refer topicform and app.component.ts in topicproject from LTI training.
+
+
+*************************************************** Angular forms ******************************************************
+There are two ways using forms can be handled in angular
+1. Template reference :
+	Here we can track changes hapepning to each html element. Angular provide various tracking event like touched, untouched, pristing, dirty etc.
+	Each html element has a template reference #anyName = ngModel/ngForm etc.
+	validation is done within the html itself
+	Refer topicform component's html in topicproject from LTI training.
+	Used for small forms
+	
+	
+2. Reactive forms
+	Here the formGroup is created in .ts file itself using direct classes or using FormBuilder
+	Each html element corres[onds to FormControl, these FormControls are passed to FormGroup object.
+	Refer reactive component in topicproject and Assignment2 in LTI training.
+	
+	
+	
+*************************** Derivatives *************************
+Angular directives are used to to manipulate DOM. Using directive we can change apperiance, behavior or a layout of DOM element. It also helps extend HTML.
+Angular 8 directives can be classified in 3 categories
+
+@Directive
+	This is special directive which doesn't have it's own view/html template but adds behavior to existing DOM. Use case would be logging a click event.
+	
+	e.g. Below also refer border.directive.ts in topicproject in LTI training
+			import {Directive} from '@angular/core';
+
+			@Directive({
+				selector: "[logOnClick]",
+				hostListeners: {
+					'click': 'onClick()',
+				},
+			})
+			class LogOnClick {
+				constructor() {}
+				onClick() { console.log('Element clicked!'); }
+			}
+			
+		Usage in existign DOM;
+		
+		<button logOnClick>I log when clicked!</button>
+		
+		// TODO : Try implementing above 
+
+1. Component Directive (@Component)
+	A component decorated with @Component is a special directive whihc has it's own view (heirarchy of DOM elements) with attached behavior.
+	
+	e.g.
+	
+		import {Component, View} from '@angular/core';
+
+		@Component({
+		  selector: 'contact-card',
+		  template: ` //This is inline template or can be another html in this component folder
+			<div>
+			  <h1>{{name}}</h1>
+			  <p>{{city}}</p>
+			</div>
+		  `
+		})
+		class ContactCard {
+		  @Input() name: string
+		  @Input() city: string
+		  constructor() {}
+		}
+		
+		Usage of above will be as;
+		
+		<contact-card [name]="'foo'" [city]="'bar'"></contact-card>
+		
+	
+2. Structural Directive
+
+	Structural directives are used in element html elements. These are used to change or manipulate the structure of DOM elements. 
+	Structural directives start with * before directives.
+	
+	e.g. *ngIf, *nfFor, *nfSwitch
+	
+3. Attibute Directive
+
+	It is ued to change look and behavior of the DOM.
+	
+	e.g. ngClass, ngStyle.
+	
+	// TODO Check attribute directive example
+	
+
+*************************** Pipes 		*************************
+
+	Pipes are used to change the representation of the data in HTML. "|' pipe symbol is used in string interpolation and desired pipe (out of the box or custome) is used. 
+	
+*************************** service 	*************************
+	@Injectible decorator is used to declare a service class
+	It is available all across the application i.e. components or html
+	Sample use case is call to server
+	
+	
+*************************** Routes 		*************************
+
+All the routed components needs
+routes are used to route certain path to another component.
+	
+	
+
+
+
+		

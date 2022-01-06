@@ -1,0 +1,53 @@
+<div class='list'>
+    <div>
+        <p>Select a Category :  
+            <select [(ngModel)]='cat' name='category'>
+                <option value="all">All</option>
+                <option *ngFor='let category of categories' value="{{category}}">
+                    {{category}}
+                </option>
+            </select>
+        </p>
+      </div>
+    <div *ngIf='listoftopics.length == 0'>
+        <h2>No topics available to display</h2>
+    </div>
+    <div *ngIf='listoftopics.length > 0'>
+        <h2 class='text-center'>List Of Topics</h2>
+        <div *ngFor='let obj of listoftopics | category:cat'>
+            <app-topic [topic]='obj'></app-topic>
+            <div class="row">
+                <div class="col-md-3 text-left">
+                    <button (click)="onselect(obj)">Read</button>
+                </div>
+                <div class="col-md-9 text-right">
+                <!-- <button (click)="delete(obj)">Delete</button>
+                <button (click)="edit(obj)">Edit</button> -->
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div *ngIf='listoftopics.length > 0'>
+    <h2 class='text-center'>List Of Topics</h2>
+    <div *ngFor='let obj of listoftopics' 
+    [ngSwitch]='obj.title'>
+    <div *ngSwitchCase="'java'" class='java'>
+        <app-topic [topic]='obj'></app-topic>
+    </div>
+    <div *ngSwitchCase="'c'" class='c'>
+        <app-topic [topic]='obj' ></app-topic>
+    </div>
+    <div *ngSwitchCase="'python'" class='python'>
+        <app-topic [topic]='obj' ></app-topic>
+    </div>
+    <div *ngSwitchDefault>
+        <app-topic [topic]='obj' ></app-topic>
+    </div>
+    </div>
+</div>
+-->

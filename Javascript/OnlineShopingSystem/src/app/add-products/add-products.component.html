@@ -1,0 +1,26 @@
+<div class="container">
+    <form #productForm = 'ngForm' (submit) = 'addProduct(productForm.value)'>
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" #productName = 'ngModel' [(ngModel)] = 'product.name' name = 'name'
+            required minlength="2">
+        </div>
+        <div *ngIf = 'productName.touched'>
+            <div class="alert alert-danger" *ngIf = 'productName.errors && productName.invalid'>
+                <small *ngIf = 'productName.errors.required'>Product Name is required</small>
+                <small *ngIf = 'productName.errors.minlength'>Minimum length is 2</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" #price = 'ngModel' [(ngModel)] = 'product.price' name = 'price'
+            required minlength="1">
+        </div>
+        <div class="alert alert-danger" *ngIf = 'price.errors && price.invalid'>
+            <small *ngIf = 'price.errors.required'>Price is required</small>
+            <small *ngIf = 'price.errors.minlength'>Minimum length is 1</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,28 @@
+<h1>Reactive Form</h1>
+
+<!-- <div>
+    <input type="text" [formControl]='name'/>
+</div> -->
+
+<form [formGroup] = 'fg'>
+    <div>
+        <input type="text" formControlName = 'name'
+        [class.is-invalid] = 'name.touched && name.invalid'/>
+    </div>
+    <!-- red border of bootstratp is some how not working above, check later -->
+    <div *ngIf='name.touched'>
+        <div class='alert alert-danger'
+         *ngIf='name.invalid'>
+            <small *ngIf='name.errors.required'>
+                Name is required
+            </small>
+            <small *ngIf='name.errors.minlength'>
+                Name min 5 charaters long
+            </small>
+        </div>
+    </div>
+    <div>
+        <input type="text" formControlName = 'password'/>
+    </div>
+</form>
+<br><br><br>

@@ -1,0 +1,49 @@
+<!-- 
+  {{}} = string interpolation
+  This is one-way data binding, i.e. data coming from component to html
+-->
+
+<h1>{{title}}. Hello Angular ...</h1>
+<p>{{ 2 + 2 }}</p>
+
+<!--
+  [html attribute name] = 'component field name'
+  This is also one of the way of one-way data binding in angular. The difference between are as follows,
+  1. [] can be used for attributes of html element only.
+  2. [] the value evaluated is converted in required data type for the attribute like boolean, number etc, but for {{}} the evaluation generates string only no other datatype
+-->
+<h2 [innerText] = 'isSelected'></h2>
+<h2>
+  <button 
+  disabled='{{isSelected}}'>Click Me</button>
+  </h2>
+
+  <!--
+    {{}} - data binding but called as string interpolation.
+    [] - data binding
+    () - event binding
+  -->
+  <p [class]="'red'">Apply Class Binding</p>
+  <p [class]='selected'>Apply Class Binding from component</p>
+  <p [class.red]='isSelected'>Apply Class Binding from component conditionally</p>
+  <h2>
+    <button (click)='change()'
+    [disabled]='isSelected'>Submit</button>
+  </h2>
+  <h2>
+<input type="checkbox"
+    [checked] = 'isSelected'
+    (click) = 'toggle()'
+/> one-way Binding
+
+  </h2>
+
+  <!-- Two way data binding
+    it is called as "Banana in Box" i.e. ( & ) represents banana and [ & ] represeents box.
+    [()] is called directive
+  -->
+
+  <h1>{{title}}</h1> <!-- String interpolation-->
+  <h2>
+    <input type="text" [(ngModel)]='title'/> Two way binding
+  </h2>

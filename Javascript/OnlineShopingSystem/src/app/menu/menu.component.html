@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm">
+
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/products">View Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/customers">View Customers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/addProducts">Add Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/registerCustomer">Register Customer</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-sm">
+    <label>Dynamic data</label>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round" (click)="toggleDatSwitch()"></span>
+    </label>
+    <label>Static data</label>
+  </div>
+</div>
